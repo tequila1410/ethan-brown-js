@@ -1,8 +1,14 @@
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const babel = require('gulp-babel');
 
-gulp.task('default', function() {
-    gulp.src("es6/**/*.js")
+exports.default = function (done) {
+    src('es6/**/*.js')
         .pipe(babel())
-        .pipe()
-})
+        .pipe(dest('dist'));
+
+    src('public/es6/**/*.js')
+        .pipe(babel())
+        .pipe(dest('public/dist'));
+        
+    done();
+}
